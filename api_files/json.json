@@ -21,10 +21,10 @@
     "paths": {
 	  
 	    "/illo": {
-	      "$ref": "#/api_files/json2.json"
+	      "$ref": "json2.json"
 	    },
-	    "/illo2/{userId}": {
-	      "$ref": "#/api_files/json3.json"
+	    "/illo2": {
+	      "$ref": "json3.json"
 	    }
 		
     },
