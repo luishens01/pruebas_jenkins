@@ -19,10 +19,13 @@
         }
     ],
     "paths": {
-		
-		"$ref": "api_files/json2.json",
-		
-		"$ref": "api_files/json3.json"
+	  
+	    "/illo": {
+	      "$ref": "/#api_files/json2.json"
+	    },
+	    "/illo2/{userId}": {
+	      "$ref": "/#api_files/json3.json"
+	    }
 		
     },
     "definitions": {
