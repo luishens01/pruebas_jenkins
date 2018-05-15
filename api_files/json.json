@@ -22,9 +22,6 @@
 	  
 	    "/illo": {
 	      "$ref": "json2.json"
-	    },
-	    "/illo2": {
-	      "$ref": "json3.json"
 	    }
 		
     },
