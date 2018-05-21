@@ -6,7 +6,8 @@ echo "This is the environment file you have select:"
 echo $ENV
 
 cd components/packages/
-sh test_script.sh ''$ENV''
+VAR=$(sh test_script.sh ''$ENV'')
+echo $VAR
 
 echo "Main script finished"
 
