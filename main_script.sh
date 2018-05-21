@@ -10,4 +10,3 @@ VAR=$(sh test_script.sh ''$ENV'')
 echo $VAR
 
 echo "Main script finished"
-
