@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-				bash main_script.sh env-int3.yaml
+				sh main_script.sh env-int3.yaml
             }
         }
         stage('Test') {
