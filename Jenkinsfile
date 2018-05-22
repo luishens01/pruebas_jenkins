@@ -1,9 +1,8 @@
 pipeline {
     agent any
 
-    parameters {
-       string(name: 'ENV_FILE', description: 'What enviroment file do you want to use?')
-	choice(choices: "env-int3.yaml\nenv-test2.yaml\ntest3.yaml")
+    parameters {       
+	choice(choices: 'env-int3.yaml\nenv-test2.yaml\ntest3.yaml', description: 'What enviroment file do you want to use?', name: 'ENV_FILE')
 	    
     }	
 
@@ -11,8 +10,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'				
-				sh './main_script.sh ${ENV_FILE}'
+                echo 'Building..'
+                echo 'selected environment  ${params.ENV_FILE}'				
+		sh './main_script.sh ${params.ENV_FILE}'
             }
         }
 
