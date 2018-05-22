@@ -9,15 +9,17 @@ pipeline {
             }
         }
 
-
-        stage('Archive test files') {
-            steps {
-		archiveArtifacts artifacts: ‘results/**/*.log’
-            }
-        }
-
-
     }
+
+
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'results/**/*.log'
+            
+        }
+    }
+
 
 }
 
