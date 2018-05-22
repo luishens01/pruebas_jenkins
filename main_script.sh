@@ -9,6 +9,8 @@ cd components/packages/
 VAR=$(sh test_script.sh ''$ENV'')
 echo $VAR
 
+cd ../..
+
 cd components/tng-rep/
 VAR_2=$(sh test_script.sh ''$ENV'')
 echo $VAR_2
