@@ -11,3 +11,4 @@ echo $VAR
 
 echo "Main script finished"
 ##
+#
