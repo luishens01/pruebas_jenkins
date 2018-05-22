@@ -15,6 +15,11 @@ pipeline {
 		sh "./main_script.sh ${params.ENV_FILE}"
             }
         }
+      
+       stage('Create Reports'){
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'tests_coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+
+	}
 
     }
 
@@ -26,6 +31,8 @@ pipeline {
             
         }
     }
+
+
 
 
 }
