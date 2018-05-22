@@ -57,7 +57,50 @@ sed -i -- "s/$ENV/environment_file/g" delete_vnfrs.yml
 
 
 echo
-echo "test finished"
+echo "test vnfr finished"
+
+
+
+URL_NSIR=$(cat upload.conf | grep -Po 'url_nsir":"\K[^"]+')
+
+echo $URL
+##uploading test elemement
+result_upload=$(sh upload_nsir.sh ''$URL_NSIR'')
+echo echo $result_upload
+echo "" > ../../results/tng-rep/upload_nsir_results.log
+echo $result_upload >> ../../results/tng-rep/upload_nsir_results.log
+echo
+#
+#
+#
+##getting elements
+sed -i -- "s/environment_file/$ENV/g" get_nsir.yml
+echo
+echo
+result_get=$(tavern-ci get_nsir.yml --stdout --debug)
+echo $result_get
+echo "" > ../../results/tng-rep/get_nsir_results.log
+echo $result_get >> ../../results/tng-rep/get_nsir_results.log
+echo
+sed -i -- "s/$ENV/environment_file/g" get_nsir.yml
+#
+#
+##deleting elements
+sed -i -- "s/environment_file/$ENV/g" delete_nsir.yml
+echo
+echo
+result_get=$(tavern-ci delete_nsir.yml --stdout --debug)
+echo $result_get
+echo "" > ../../results/tng-rep/delete_nsir_results.log
+echo $result_get >> ../../results/tng-rep/delete_nsir_results.log
+echo
+sed -i -- "s/$ENV/environment_file/g" delete_nsir.yml
+
+
+
+echo
+echo "test vnfr finished"
+
 
 
 

@@ -92,6 +92,7 @@ echo "STATUS = \033[33;32m $status"
   echo "\033[33;33mMessage sended to the Message Broker"
   MSG=$(tavern-ci mqqt.yml)
   echo 
+  echo "\033[33;37m"
   echo
 else
   echo
