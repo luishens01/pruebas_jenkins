@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     parameters {
-       string(name: 'ENV_FILE',
-	choices: "env-int3.yaml\nenv-test2.yaml\ntest3.yaml",
-	description: 'What enviroment file do you want to use?')    
+       string(name: 'ENV_FILE', description: 'What enviroment file do you want to use?')
+	choice(choices: "env-int3.yaml\nenv-test2.yaml\ntest3.yaml")
+	    
     }	
 
 
