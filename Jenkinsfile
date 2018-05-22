@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'				
-				sh './main_script.sh ${params.ENV_FILE}'
+				sh './main_script.sh ${ENV_FILE}'
             }
         }
 
