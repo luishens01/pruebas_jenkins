@@ -10,8 +10,8 @@ VAR=$(sh test_script.sh ''$ENV'')
 echo $VAR
 
 cd components/tng-rep/
-VAR=$(sh test_script.sh ''$ENV'')
-echo $VAR
+VAR_2=$(sh test_script.sh ''$ENV'')
+echo $VAR_2
 
 
 echo "Main script finished"
