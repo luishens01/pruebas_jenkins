@@ -15,6 +15,7 @@ pipeline {
 		sh "./main_script.sh ${params.ENV_FILE}"
 
 
+		sh "mkdir tests_coverage"
 		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'tests_coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
             }
         }
