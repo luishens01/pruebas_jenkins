@@ -22,7 +22,7 @@ echo
 echo
 result_delete=$(tavern-ci delete_packages.yml --stdout --debug)
 echo $result_delete
-echo "" > ../../results/packages/delete_package_results.log
+echo "" > ../../results/packages/delete_packages_results.log
 echo $result_delete >> ../../results/packages/delete_packages_results.log
 echo
 sed -i -- "s/$ENV/environment_file/g" delete_packages.yml
@@ -50,7 +50,7 @@ echo
 echo
 result_get=$(tavern-ci get_packages.yml --stdout --debug)
 echo $result_get
-echo "" > ../../results/packages/get_package_results.log
+echo "" > ../../results/packages/get_packages_results.log
 echo $result_get >> ../../results/packages/get_packages_results.log
 echo
 sed -i -- "s/$ENV/environment_file/g" get_packages.yml
