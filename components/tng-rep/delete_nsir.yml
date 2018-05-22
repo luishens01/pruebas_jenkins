@@ -1,0 +1,15 @@
+test_name: delete_vnfr
+
+includes:
+  - !include environment_file
+
+#delete vnfr
+stages:
+  - name: delete_vnfr
+    request:
+      url: "{nsir_host:s}/0ef2e8b7-886f-4dc2-8422-09b881bd802f"
+      method: DELETE
+    response:
+      status_code: 200
+
+

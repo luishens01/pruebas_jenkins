@@ -1,0 +1,18 @@
+
+test_name: get_vnfr
+
+includes:
+  - !include environment_file
+#  - !!!!!!include env-int3.yaml
+
+
+#get vnfrs
+stages:
+  - name: get_vnfrs
+    request:
+      url: "{nsir_host:s}"
+      method: GET
+      headers:
+        content-type: application/json
+    response:
+      status_code: 200
