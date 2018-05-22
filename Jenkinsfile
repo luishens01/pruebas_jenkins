@@ -13,13 +13,13 @@ pipeline {
                 echo 'Building..'
                 echo "selected environment  ${params.ENV_FILE}"				
 		sh "./main_script.sh ${params.ENV_FILE}"
+
+
+		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'tests_coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
             }
         }
       
-       stage('Create Reports'){
-		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'tests_coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
 
-	}
 
     }
 
