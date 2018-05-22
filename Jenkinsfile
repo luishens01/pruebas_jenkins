@@ -15,7 +15,7 @@ pipeline {
 		sh "./main_script.sh ${params.ENV_FILE}"
 
 
-		sh "mkdir -p tests_coverage"
+		sh "mkdir -p coverage"
        
 	 publishHTML target: [
             allowMissing: false,
