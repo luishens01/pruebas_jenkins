@@ -17,6 +17,7 @@ pipeline {
 
 		sh "mkdir -p tests_coverage"
 		publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'tests_coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+		sh "ls tests_coverage/*"
             }
         }
       
