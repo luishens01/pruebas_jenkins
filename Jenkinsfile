@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 echo "selected environment  ${params.ENV_FILE}"				
-		sh './main_script.sh ${params.ENV_FILE}'
+		sh "./main_script.sh ${params.ENV_FILE}"
             }
         }
 
