@@ -1,14 +1,13 @@
-#get token
-test_name: delete_packages
+test_name: delete_vnfr
 
 includes:
   - !include environment_file
 
-#delete packages
+#delete vnfr
 stages:
-  - name: delete_packages
+  - name: delete_vnfr
     request:
-      url: "{delete_host:s}"
+      url: "{vnf_host:s}/1b5bab2a-8286-2b40-4827-dc5d6e37bf8e"
       method: DELETE
     response:
       status_code: 200

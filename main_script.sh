@@ -9,6 +9,11 @@ cd components/packages/
 VAR=$(sh test_script.sh ''$ENV'')
 echo $VAR
 
+cd components/tng-rep/
+VAR=$(sh test_script.sh ''$ENV'')
+echo $VAR
+
+
 echo "Main script finished"
 ##
 #

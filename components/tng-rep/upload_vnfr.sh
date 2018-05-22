@@ -1,107 +1,79 @@
 #!/bin/bash
 
-PKG=""
-URL=""
-usage="\nTo use this script you must specify the following options:\n\n-p: path to the package\n-u: url to the api \n\nExample:\n\nsh upload_pkg.sh -p '/path/pkg_name.son' -u 'http://destination_url:32001/api/v2/packages'\n"
 
-#read the arguments and save them in the variables
-while getopts ":p:u:" option; do
-    case "${option}" in
-        p) PKG=${OPTARG};;
-        u) URL=${OPTARG};;
-        :) echo "Missing option argument for -$OPTARG" >&2; exit 1;;
-	*) echo "Unimplemented option: -$OPTARG" >&2; exit 1;;
-   	\?) echo "Unknown option: -$OPTARG" >&2; exit 1;;
-    esac
-done
+URL=$1
 
-if [ ! "$PKG" ] || [ ! "$URL" ]
-then
-    echo $usage
-    exit 1
-fi
+echo $URL
 
+Result=$(curl -X POST \
+  ""$URL"" \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'postman-token: c14b549f-4ad6-166a-b325-17b8762245e7' \
+  -d '{
+  "descriptor_version": "i0ocAa",
+  "id": "1b5bab2a-8286-2b40-4827-dc5d6e37bf8e",
+  "status": "normal operation",
+  "virtual_deployment_units": [
+    {
+      "id": "nostrud in",
+      "resource_requirements": {
+        "cpu": {
+          "vcpus": 44612128
+        },
+        "memory": {
+          "size": 80183833
+        }
+      }
+    },
+    {
+      "id": "eu dolore nisi incididunt",
+      "resource_requirements": {
+        "cpu": {
+          "vcpus": 2304668
+        },
+        "memory": {
+          "size": 8962376
+        }
+      },
+      "vdu_reference": "pariatur"
+    },
+    {
+      "id": "commodo dolor nostrud",
+      "resource_requirements": {
+        "cpu": {
+          "vcpus": 50962880
+        },
+        "memory": {
+          "size": 91724292
+        },
+        "network": {
+          "data_processing_acceleration_library": "adipisicing tempor ut in in"
+        },
+        "hypervisor_parameters": {
+          "type": "qui laboris enim in",
+          "version": "4920.305.4"
+        }
+      }
+    },
+    {
+      "id": "in non sint",
+      "resource_requirements": {
+        "cpu": {
+          "vcpus": 82258996,
+          "cpu_support_accelerator": "non ea irure"
+        },
+        "memory": {
+          "size": 89557457,
+          "numa_allocation_policy": "sint Duis voluptate consectetur"
+        }
+      },
+      "number_of_instances": 34083178
+    }
+  ]
+}')
 
-
-
-LOGIN_URI=$(echo $URL | cut -d':' -f1-2)
-
-
-LOGIN_URL="$LOGIN_URI:32001/api/v2/sessions"
-
-
-
-
-echo
-echo These are your options:
-echo
-
-echo Package: "\033[33;33m $PKG"
-echo "\033[33;37m"
-echo API URL: "\033[33;33m $URL"
-echo
-#echo "\033[33;37mPress Enter to continue or CTRL+C to cancel "
-#read enter
-echo "\033[33;32m...Retrieving login data and Reading Package Content..."
-echo 
-
-
-resp=$(curl -qSfsw '\n%{http_code}' -d '{"username":"sonata","password":"1234"}' ""$LOGIN_URL"")
-token=$(printf "$resp" | grep -Po 'access_token":"\K[^"]+')
-
-
-echo "\033[33;37m"
-echo "Done"
-sleep 2
-echo
-echo This is your TOKEN: "\033[33;33m$token "
-echo
-echo
-echo "\033[33;32m...Uploading package..."
-echo "\033[33;37m"
-sleep 2
-
-Result=$(curl -v -i -X POST -H "Authorization:Bearer $token" -F ""package=@$PKG"" ""$URL"")
-
-
-created_at="created_at"
-
-if echo "$Result" | grep "$created_at"
-then
-  echo
-  echo "\033[33;33mPackage uploaded correctly"
-  echo
-
-uuid=$(printf "$Result" | grep -Po 'uuid":"\K[^"]+')
-
-UUID_FINAL=$(echo $uuid| cut -d' ' -f 1)
-echo "\033[33;37m"
-echo "UUID = \033[33;32m $UUID_FINAL"
-son_package_uuid=$(echo $uuid| cut -d' ' -f 2)
-echo "\033[33;37m" 
-echo "SON PACKAGE UUID = \033[33;32m $son_package_uuid"  
-echo "\033[33;37m"
-vendor=$(printf "$Result" | grep -Po 'vendor":"\K[^"]+')
-echo "VENDOR = \033[33;32m $vendor" 
-echo "\033[33;37m"
-status=$(printf "$Result" | grep -Po 'status":"\K[^"]+')
-echo "STATUS = \033[33;32m $status" 
-
-
-  echo
-  echo "\033[33;33mMessage sended to the Message Broker"
-  MSG=$(tavern-ci mqqt.yml)
-  echo 
-  echo
-else
-  echo
-  echo
-  echo "ERROR UPLOADING THE PACKAGE:"
-  echo
-  echo "\033[33;33m $Result"
-  echo "\033[33;37m"
-  echo
-fi
+echo $Result
 
 
 

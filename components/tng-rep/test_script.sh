@@ -12,48 +12,50 @@ composed_env_path="../../environments/$ENV_0"
 cp -v $composed_env_path envfile.yml
 
 #cat envfile.yml
-mkdir ../../results/packages
+mkdir ../../results/tng-rep
 
 ENV="envfile.yml"
 
-##deleting elements
-sed -i -- "s/environment_file/$ENV/g" delete_packages.yml
-echo
-echo
-result_delete=$(tavern-ci delete_packages.yml --stdout --debug)
-echo $result_delete
-echo "" > ../../results/packages/delete_results.log
-echo $result_delete >> ../../results/packages/delete_results.log
-echo
-sed -i -- "s/$ENV/environment_file/g" delete_packages.yml
-echo
 #
 #
 #
 URL=$(cat upload.conf | grep -Po 'url":"\K[^"]+')
-FL=$(cat upload.conf | grep -Po 'fl":"\K[^"]+')
 
 echo $URL
-echo $FL
 ##uploading test elemement
-result_upload=$(sh upload_package.sh -p ''$FL'' -u ''$URL'')
+result_upload=$(sh upload_vnfr.sh ''$URL'')
 echo echo $result_upload
-echo "" > ../../results/packages/upload_results.log
-echo $result_upload >> ../../results/packages/upload_results.log
+echo "" > ../../results/tng-rep/upload_vnfrs_results.log
+echo $result_upload >> ../../results/tng-rep/upload_vnfrs_results.log
 echo
 #
 #
 #
 ##getting elements
-sed -i -- "s/environment_file/$ENV/g" get_packages.yml
+sed -i -- "s/environment_file/$ENV/g" get_vnfrs.yml
 echo
 echo
-result_get=$(tavern-ci get_packages.yml --stdout --debug)
+result_get=$(tavern-ci get_vnfrs.yml --stdout --debug)
 echo $result_get
-echo "" > ../../results/packages/get_results.log
-echo $result_get >> ../../results/packages/get_results.log
+echo "" > ../../results/tng-rep/get_vnfrs_results.log
+echo $result_get >> ../../results/tng-rep/get_vnfrs_results.log
 echo
-sed -i -- "s/$ENV/environment_file/g" get_packages.yml
+sed -i -- "s/$ENV/environment_file/g" get_vnfrs.yml
+#
+#
+##deleting elements
+sed -i -- "s/environment_file/$ENV/g" delete_vnfrs.yml
+echo
+echo
+result_get=$(tavern-ci delete_vnfrs.yml --stdout --debug)
+echo $result_get
+echo "" > ../../results/tng-rep/delete_vnfrs_results.log
+echo $result_get >> ../../results/tng-rep/delete_vnfrs_results.log
+echo
+sed -i -- "s/$ENV/environment_file/g" delete_vnfrs.yml
+
+
+
 echo
 echo "test finished"
 
