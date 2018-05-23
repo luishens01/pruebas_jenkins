@@ -24,7 +24,7 @@ pipeline {
 			allowMissing: false,
 			alwaysLinkToLastBuild: false,
 			keepAll: true,
-			reportDir: 'results/*/*',
+			reportDir: 'results/packages',
 			reportFiles: 'index.html',
 			reportName: 'Results Report'
 		  ]	
