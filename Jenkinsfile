@@ -11,18 +11,7 @@ pipeline {
 				sh "./main_script.sh ${params.ENV_FILE}"
             }
 		}
-	stage('Publish results'){
-		steps {
-			  publishHTML target: [
-				allowMissing: false,
-				alwaysLinkToLastBuild: false,
-				keepAll: true,
-				reportDir: 'results',
-				reportFiles: 'index.html',
-				reportName: 'Report'
-			  ]
-			}			
-		}
+
     }
 
     post {
@@ -30,6 +19,16 @@ pipeline {
             archiveArtifacts artifacts: 'results/**/*.log'
             
         }
+	success {
+		  publishHTML target: [
+			allowMissing: false,
+			alwaysLinkToLastBuild: false,
+			keepAll: true,
+			reportDir: 'results',
+			reportFiles: 'index.html',
+			reportName: 'Results Report'
+		  ]	
+	}
     }
 
 }
