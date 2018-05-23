@@ -19,8 +19,17 @@ pipeline {
         }
 	stage('Publish results'){
 		steps{
-			                    
-                    cucumber 'reports/*/*.log'
+		  publishHTML target: [
+		    allowMissing: false,
+		    alwaysLinkToLastBuild: false,
+		    keepAll: true,
+		    reportDir: 'results',
+		    reportFiles: 'index.html',
+		    reportName: 'Report'
+		  ]
+      }
+
+
 		}
 			
 }
