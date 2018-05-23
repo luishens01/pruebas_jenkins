@@ -19,7 +19,8 @@ pipeline {
         }
 	stage('Publish results'){
 		steps{
-			junit(allowEmptyResults: true, testResults: 'results/*/*.log')
+			                    
+                    cucumber 'reports/*/*.log'
 		}
 			
 }
