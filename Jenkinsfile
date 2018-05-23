@@ -8,7 +8,7 @@ pipeline {
             parallel {
                 stage('Packages Tests') {
                     steps {
-			sh "/components/packages/test_script.sh ${params.ENV_FILE}"
+			sh "./components/packages/test_script.sh ${params.ENV_FILE}"
                     }
                     post {
 			always {
@@ -28,7 +28,7 @@ pipeline {
                 }
                 stage('Tng-rep Tests') {
                     steps {
-			sh "/components/tng-rep/test_script.sh ${params.ENV_FILE}"
+			sh "./components/tng-rep/test_script.sh ${params.ENV_FILE}"
                     }
                     post {
 			always {
