@@ -15,20 +15,14 @@ pipeline {
 		sh "./main_script.sh ${params.ENV_FILE}"
 
 
-		sh "mkdir -p coverage"
-       
-	 publishHTML target: [
-            allowMissing: false,
-            alwaysLinkToLastBuild: false,
-            keepAll: true,
-            reportDir: 'coverage',
-            reportFiles: 'index.html',
-            reportName: 'RCov Report'
-          ]
-
-
             }
         }
+	stage('Publish results'){
+		steps{
+			junit(allowEmptyResults: true, testResults: 'results/*/*.log')
+		}
+			
+}
       
 
 
