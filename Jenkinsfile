@@ -7,9 +7,6 @@ pipeline {
         stage('Run Tests') {
             parallel {
                 stage('Packages Tests') {
-                    agent {
-                        label "packages"
-                    }
                     steps {
 			sh "/components/packages/test_script.sh ${params.ENV_FILE}"
                     }
@@ -30,9 +27,6 @@ pipeline {
                     }
                 }
                 stage('Tng-rep Tests') {
-                    agent {
-                        label "Tng-rep Tests"
-                    }
                     steps {
 			sh "/components/tng-rep/test_script.sh ${params.ENV_FILE}"
                     }
