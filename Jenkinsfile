@@ -21,7 +21,7 @@ pipeline {
 				keepAll: true,
 				reportDir: 'results/packages',
 				reportFiles: 'index.html',
-				reportName: 'Results Report'
+				reportName: 'Packages Report'
 			  ]	
 			}
                     }
@@ -41,7 +41,7 @@ pipeline {
 				keepAll: true,
 				reportDir: 'results/packages',
 				reportFiles: 'index.html',
-				reportName: 'Results Report'
+				reportName: 'Tng-Rep Report'
 			  ]	
 			}
                     }
